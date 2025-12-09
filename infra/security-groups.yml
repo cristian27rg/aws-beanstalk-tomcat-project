@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Security Groups para Tomcat (EB/EC2) y RDS MySQL.
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC donde se crearán los Security Groups.
+
+Resources:
+
+  TomcatWebSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Permite HTTP/HTTPS para Tomcat (EC2/Elastic Beanstalk)
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: Tomcat-EB-CF
+
+  RDSMySQLSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Permite MySQL solo desde el SG de Tomcat
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          SourceSecurityGroupId: !Ref TomcatWebSG
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: RDS-MySQL-CF
+
+Outputs:
+  TomcatWebSGId:
+    Description: Security Group ID para Tomcat (web)
+    Value: !Ref TomcatWebSG
+    Export:
+      Name: TomcatWebSGId
+
+  RDSMySQLSGId:
+    Description: Security Group ID para RDS MySQL
+    Value: !Ref RDSMySQLSG
+    Export:
+      Name: RDSMySQLSGId
+
