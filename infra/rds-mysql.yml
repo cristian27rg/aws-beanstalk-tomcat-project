@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: RDS MySQL instance for Tomcat application (recreated from existing env)
+
+Parameters:
+  DBName:
+    Type: String
+    Default: mydb
+  DBUser:
+    Type: String
+    Default: admin
+  DBPassword:
+    Type: String
+    NoEcho: true
+    Default: Admin12345!
+  DBInstanceClass:
+    Type: String
+    Default: db.t4g.micro
+  AllocatedStorage:
+    Type: Number
+    Default: 20
+
+Resources:
+  MySQLDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: mysql-tomcat
+      Engine: mysql
+      EngineVersion: "8.0"
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBPassword
+      AllocatedStorage: !Ref AllocatedStorage
+      DBInstanceClass: !Ref DBInstanceClass
+      VPCSecurityGroups:
+        - sg-0f0d3893e5beabd0b
+      PubliclyAccessible: false
+      Port: 3306
+      BackupRetentionPeriod: 1
+
+Outputs:
+  RDSEndpoint:
+    Description: RDS endpoint address
+    Value: !GetAtt MySQLDatabase.Endpoint.Address
+  RDSPort:
+    Description: RDS port
+    Value: !GetAtt MySQLDatabase.Endpoint.Port
+
