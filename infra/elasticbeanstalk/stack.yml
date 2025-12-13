@@ -12,5 +12,4 @@ Resources:
     Properties:
       EnvironmentName: Tomcat-env
       ApplicationName: tomcat
-
-
+      PlatformArn: arn:aws:elasticbeanstalk:us-east-1::platform/Tomcat 11 with Corretto 25 running on 64bit Amazon Linux 2023/5.9.0
