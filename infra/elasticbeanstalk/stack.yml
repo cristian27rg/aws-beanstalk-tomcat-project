@@ -1,6 +1,4 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Placeholder stack for Git Sync (does not manage existing EB)
-
 Resources: {}
 
-     
