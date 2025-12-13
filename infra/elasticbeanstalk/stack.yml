@@ -1,5 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Elastic Beanstalk stack managed by CloudFormation Git Sync
 
-Resources: {}
+Resources:
+  TomcatApplication:
+    Type: AWS::ElasticBeanstalk::Application
+    Properties:
+      ApplicationName: tomcat
+
+  TomcatEnvironment:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      EnvironmentName: Tomcat-env
+      ApplicationName: tomcat
+
 
