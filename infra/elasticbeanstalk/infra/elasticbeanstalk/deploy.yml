@@ -1,4 +1,0 @@
-template-file-path: infra/elasticbeanstalk/stack.yml
-parameters: {}
-tags: {}
-
