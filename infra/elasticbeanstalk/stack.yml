@@ -1,15 +1,3 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Elastic Beanstalk stack managed by CloudFormation Git Sync
-
-Resources:
-  TomcatApplication:
-    Type: AWS::ElasticBeanstalk::Application
-    Properties:
-      ApplicationName: tomcat
-
-  TomcatEnvironment:
-    Type: AWS::ElasticBeanstalk::Environment
-    Properties:
-      EnvironmentName: Tomcat-env
-      ApplicationName: tomcat
-      PlatformArn: arn:aws:elasticbeanstalk:us-east-1::platform/Tomcat 11 with Corretto 25 running on 64bit Amazon Linux 2023/5.9.0
+template-file-path: infra/elasticbeanstalk/stack.yml
+parameters: {}
+tags: {}
