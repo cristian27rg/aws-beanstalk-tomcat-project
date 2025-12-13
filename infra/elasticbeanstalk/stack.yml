@@ -1,36 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Elastic Beanstalk stack managed by CloudFormation Git Sync
+Description: Placeholder stack for Git Sync (does not manage existing EB)
 
-Parameters:
-  ApplicationName:
-    Type: String
-    Default: tomcat
+Resources: {}
 
-  EnvironmentName:
-    Type: String
-    Default: Tomcat-env
-
-  PlatformArn:
-    Type: String
-    Default: arn:aws:elasticbeanstalk:us-east-1::platform/Tomcat 11 with Corretto 25 running on 64bit Amazon Linux 2023/5.9.0
-
-  InstanceType:
-    Type: String
-    Default: t2.micro
-
-Resources:
-  TomcatApplication:
-    Type: AWS::ElasticBeanstalk::Application
-    Properties:
-      ApplicationName: !Ref ApplicationName
-
-  TomcatEnvironment:
-    Type: AWS::ElasticBeanstalk::Environment
-    Properties:
-      EnvironmentName: !Ref EnvironmentName
-      ApplicationName: !Ref TomcatApplication
-      PlatformArn: !Ref PlatformArn
-      OptionSettings:
-        - Namespace: aws:autoscaling:launchconfiguration
-          OptionName: InstanceType
-          Value: !Ref InstanceType
+     
