@@ -1,0 +1,22 @@
+template-file-path: infra/elasticbeanstalk/stack.yml
+parameters:
+  InstanceTypeFamily: '****'
+  LogPublicationControl: '****'
+  InstancePort: '****'
+  XRayEnabled: '****'
+  AWSEBEnvironmentId: '****'
+  HooksPkgUrl: '****'
+  JVMOptions: '****'
+  AWSEBEnvironmentName: '****'
+  AWSEBReferrerId: '****'
+  AppSource: '****'
+  ProxyServer: '****'
+  EnvironmentVariables: '****'
+  AWSEBAgentId: '****'
+  InstanceType: '****'
+  AWSEBEnvironmentBucket: '****'
+  ProxyStaticFiles: '****'
+tags:
+  elasticbeanstalk:environment-name: Tomcat-env
+  elasticbeanstalk:environment-id: e-xcnmqktt2p
+  Name: Tomcat-env
